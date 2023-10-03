@@ -1,5 +1,5 @@
 {
-  "name": "template-next-ts",
+  "name": "course-platform",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,10 +14,15 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.282.0",
     "next": "13.5.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sharp": "^0.32.6"
+    "sharp": "^0.32.6",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.2",
@@ -32,6 +37,7 @@
     "@types/react-dom": "18.2.8",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
+    "autoprefixer": "^10.4.16",
     "eslint": "8.50.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
@@ -43,8 +49,11 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-extended": "^4.0.1",
     "lint-staged": "^14.0.1",
+    "postcss": "^8.4.31",
     "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
     "serve": "^14.2.1",
+    "tailwindcss": "^3.3.3",
     "typescript": "5.2.2"
   }
 }
