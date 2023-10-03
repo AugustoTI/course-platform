@@ -2,6 +2,7 @@ import '@/styles/global.css'
 import { type Metadata } from 'next'
 import { type ReactNode } from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
+import { cn } from '@/lib/utils'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +17,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>{children}</body>
+        <body className={cn('antialiased')}>{children}</body>
       </html>
     </ClerkProvider>
   )
