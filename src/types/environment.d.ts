@@ -1,5 +1,8 @@
 // Set the typing of your environment variables here 👇
-type MyVariables = {}
+type MyVariables = {
+  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: string
+  CLERK_SECRET_KEY: string
+}
 
 declare global {
   namespace NodeJS {
