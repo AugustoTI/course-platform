@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:static": "serve",
+    "start:static": "serve out",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix --max-warnings=0",
@@ -15,17 +15,23 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.25.1",
+    "@hookform/resolvers": "^3.3.1",
     "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "axios": "^1.5.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.282.0",
     "next": "13.5.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.47.0",
+    "react-hot-toast": "^2.4.1",
     "sharp": "^0.32.6",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.2",

@@ -3,6 +3,7 @@ import { type Metadata } from 'next'
 import { type ReactNode } from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
 import { cn } from '@/lib/utils'
+import { ToastProvider } from '@/components/providers/toaster-provider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +18,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn('antialiased')}>{children}</body>
+        <body className={cn('antialiased')}>
+          <ToastProvider />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   )
