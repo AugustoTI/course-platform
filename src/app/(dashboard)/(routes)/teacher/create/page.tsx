@@ -38,8 +38,9 @@ export default function CreatePage() {
 
   const onSubmit: SubmitHandler<FormSchemaFields> = async (fields) => {
     try {
-      const response = await axios.post('/api/course', fields)
+      const response = await axios.post('/api/courses', fields)
       router.push(`/teacher/courses/${response.data.id}`)
+      toast.success('Course created ! 😁')
     } catch {
       toast.error('Something went wrong... 😟')
     }
