@@ -6,6 +6,9 @@ const nextConfig = {
   compiler: {
     removeConsole: !isDev,
   },
+  images: {
+    domains: ['utfs.io'],
+  },
 }
 
 module.exports = nextConfig

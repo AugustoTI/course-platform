@@ -5,6 +5,7 @@ import { IconBadge } from '@/components/icon-badge'
 import { LayoutDashboard } from 'lucide-react'
 import { TitleForm } from './_components/title-form'
 import { DescriptionForm } from './_components/description-form'
+import { ImageForm } from './_components/image-form'
 
 interface CourseIdPage {
   params: { courseId: string }
@@ -52,6 +53,7 @@ export default async function CourseIdPage({ params }: CourseIdPage) {
           </div>
           <TitleForm initialData={course.title} courseId={course.id} />
           <DescriptionForm initialData={course.description} courseId={course.id} />
+          <ImageForm initialData={course.imageUrl} courseId={course.id} />
         </div>
       </div>
     </div>

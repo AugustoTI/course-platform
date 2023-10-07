@@ -81,3 +81,5 @@
     @apply h-full;
   }
 }
+
+@import '~@uploadthing/react/styles.css';
