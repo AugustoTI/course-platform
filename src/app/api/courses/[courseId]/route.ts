@@ -11,9 +11,7 @@ export async function PATCH(req: Request, { params }: PatchProps) {
     const { userId } = auth()
     const values = await req.json()
 
-    if (!userId) {
-      return new NextResponse('unauthorized', { status: 401 })
-    }
+    if (!userId) return new NextResponse('unauthorized', { status: 401 })
 
     const course = await db.course.update({
       where: {
