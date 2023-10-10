@@ -14,6 +14,7 @@ import { Form, FormItem } from '@/components/ui/form'
 import { cn } from '@/lib/utils'
 import { Input } from '@/components/ui/input'
 import { Chapter, Course } from '@prisma/client'
+import { ChaptersList } from './chapters-list'
 
 interface ChaptersFormProps {
   initialData: Course & { chapters: Chapter[] }
@@ -95,6 +96,11 @@ export function ChaptersForm({ courseId, initialData }: ChaptersFormProps) {
           )}
         >
           {!initialData.chapters.length && 'No chapters'}
+          <ChaptersList
+            onEdit={() => {}}
+            onReorder={() => {}}
+            items={initialData.chapters || []}
+          />
         </div>
       )}
       {!isCreating && (
