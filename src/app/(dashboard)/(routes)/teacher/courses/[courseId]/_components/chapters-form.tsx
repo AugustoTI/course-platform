@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { PlusCircle } from 'lucide-react'
+import { Loader2, PlusCircle } from 'lucide-react'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
@@ -29,6 +29,7 @@ type FormSchemaFields = z.infer<typeof formSchema>
 
 export function ChaptersForm({ courseId, initialData }: ChaptersFormProps) {
   const [isCreating, setIsCreating] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const router = useRouter()
 
@@ -53,12 +54,33 @@ export function ChaptersForm({ courseId, initialData }: ChaptersFormProps) {
     }
   }
 
-  const toggleCreating = () => {
-    setIsCreating((prevState) => !prevState)
+  const toggleCreating = () => setIsCreating((prevState) => !prevState)
+
+  const onReorder = async (updateData: { id: string; position: number }[]) => {
+    try {
+      setIsUpdating(true)
+      await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
+        list: updateData,
+      })
+      toast.success('Chapters reordered')
+      router.refresh()
+    } catch {
+      toast.error('Something went wrong')
+    } finally {
+      setIsUpdating(false)
+    }
   }
 
+  const onEdit = (id: string) =>
+    router.push(`/teacher/courses/${courseId}/chapters/${id}`)
+
   return (
-    <div className="mt-6 rounded-md border bg-slate-100 p-4">
+    <div className="relative mt-6 rounded-md border bg-slate-100 p-4">
+      {isUpdating && (
+        <div className="rounded-m absolute right-0 top-0 flex h-full w-full items-center justify-center bg-slate-500/20">
+          <Loader2 className="animate-spin text-sky-700" size={24} />
+        </div>
+      )}
       <div className="flex items-center justify-between font-medium">
         Course chapters
         <Button variant={'ghost'} className="gap-2" onClick={toggleCreating}>
@@ -97,8 +119,8 @@ export function ChaptersForm({ courseId, initialData }: ChaptersFormProps) {
         >
           {!initialData.chapters.length && 'No chapters'}
           <ChaptersList
-            onEdit={() => {}}
-            onReorder={() => {}}
+            onEdit={onEdit}
+            onReorder={onReorder}
             items={initialData.chapters || []}
           />
         </div>
