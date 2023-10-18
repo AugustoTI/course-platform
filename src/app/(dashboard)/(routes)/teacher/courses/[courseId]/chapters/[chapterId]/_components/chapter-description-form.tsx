@@ -61,7 +61,7 @@ export function ChapterDescriptionForm({
   return (
     <div className="mt-6 rounded-md border bg-slate-100 p-4">
       <div className="flex items-center justify-between font-medium">
-        Chaptet description
+        Chapter description
         <Button variant={'ghost'} className="gap-2" onClick={toggleEdit}>
           {isEditing ? (
             'Cancel'
