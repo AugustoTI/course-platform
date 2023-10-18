@@ -13,6 +13,9 @@
     "test:coverage": "jest --coverage",
     "prepare": "husky install"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@clerk/nextjs": "^4.25.1",
     "@hello-pangea/dnd": "^16.3.0",
@@ -72,6 +75,7 @@
     "prisma": "^5.4.1",
     "serve": "^14.2.1",
     "tailwindcss": "^3.3.3",
+    "tsx": "^3.14.0",
     "typescript": "5.2.2"
   }
 }

@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { PrismaClient } = require('@prisma/client')
+import { PrismaClient } from '@prisma/client'
 
 const database = new PrismaClient()
 
@@ -14,6 +13,9 @@ async function main() {
         { name: 'Engineering' },
         { name: 'Accounting' },
         { name: 'Photography' },
+        { name: 'Software Engineering' },
+        { name: 'Languages' },
+        { name: 'Art and drawing' },
       ],
     })
 
