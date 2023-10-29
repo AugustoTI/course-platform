@@ -7,7 +7,12 @@ const nextConfig = {
     removeConsole: !isDev,
   },
   images: {
-    domains: ['utfs.io'],
+    remotePatterns: [
+      {
+        hostname: 'utfs.io',
+        protocol: 'https',
+      },
+    ],
   },
 }
 
