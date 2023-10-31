@@ -56,7 +56,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center justify-between py-4">
+      <div className="flex items-center justify-between gap-x-3 py-4">
         <Input
           autoComplete="off"
           placeholder="Filter courses..."
@@ -66,7 +66,7 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-        <Button asChild className="gap-x-2">
+        <Button asChild className="gap-x-2 whitespace-nowrap">
           <Link href="/teacher/create">
             <PlusCircle size={16} />
             New Course
