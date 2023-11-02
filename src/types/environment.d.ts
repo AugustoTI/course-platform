@@ -18,6 +18,12 @@ type MyVariables = {
   // UPLOADTHING
   UPLOADTHING_SECRET: string
   UPLOADTHING_APP_ID: string
+
+  // STRIPE
+  STRIPE_API_KEY: string
+  STRIPE_WEBHOOK_SECRET: string
+
+  NEXT_PUBLIC_APP_URL: string
 }
 
 declare global {
