@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 
 import { Button } from '@/components/ui/button'
-import { Form, FormItem } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { cn } from '@/lib/utils'
 import { Input } from '@/components/ui/input'
 import { formatPrice } from '@/lib/format'
@@ -38,7 +38,7 @@ export function PriceForm({ courseId, initialData }: PriceFormProps) {
   })
 
   const { isSubmitting, isValid } = form.formState
-  const { register, handleSubmit } = form
+  const { handleSubmit } = form
 
   const onSubmit: SubmitHandler<FormSchemaFields> = async (fields) => {
     try {
@@ -76,15 +76,24 @@ export function PriceForm({ courseId, initialData }: PriceFormProps) {
       {isEditing && (
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
-            <FormItem>
-              <Input
-                {...register('price')}
-                type="number"
-                step={0.01}
-                disabled={isSubmitting}
-                placeholder="Set a price for your course"
-              />
-            </FormItem>
+            <FormField
+              control={form.control}
+              name="price"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      step={0.01}
+                      disabled={isSubmitting}
+                      placeholder="Set a price for your course"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">
                 Save

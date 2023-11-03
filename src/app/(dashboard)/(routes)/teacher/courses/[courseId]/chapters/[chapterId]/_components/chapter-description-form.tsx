@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 
 import { Button } from '@/components/ui/button'
-import { Form, FormField, FormItem } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { cn } from '@/lib/utils'
 import { Editor } from '@/components/editor'
 import { Preview } from '@/components/preview'
@@ -87,7 +87,10 @@ export function ChapterDescriptionForm({
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <Editor {...field} />
+                  <FormControl>
+                    <Editor {...field} />
+                  </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />

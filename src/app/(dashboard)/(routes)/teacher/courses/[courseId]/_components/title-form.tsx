@@ -11,7 +11,7 @@ import axios from 'axios'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Form, FormItem, UncontrolledFormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 
 interface TitleFormProps {
   initialData: string
@@ -19,7 +19,7 @@ interface TitleFormProps {
 }
 
 const formSchema = z.object({
-  title: z.string().nonempty('Title is required'),
+  title: z.string().min(1, 'Title is required'),
 })
 
 type FormSchemaFields = z.infer<typeof formSchema>
@@ -35,8 +35,8 @@ export function TitleForm({ courseId, initialData }: TitleFormProps) {
     },
   })
 
-  const { isSubmitting, isValid, errors } = form.formState
-  const { register, handleSubmit } = form
+  const { isSubmitting, isValid } = form.formState
+  const { handleSubmit } = form
 
   const onSubmit: SubmitHandler<FormSchemaFields> = async (fields) => {
     try {
@@ -70,14 +70,22 @@ export function TitleForm({ courseId, initialData }: TitleFormProps) {
       {isEditing && (
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
-            <FormItem>
-              <Input
-                {...register('title')}
-                disabled={isSubmitting}
-                placeholder="e.g. 'Advanced web development'"
-              />
-              <UncontrolledFormMessage message={errors.title?.message} />
-            </FormItem>
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      disabled={isSubmitting}
+                      placeholder="e.g. 'Advanced web development'"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">
                 Save

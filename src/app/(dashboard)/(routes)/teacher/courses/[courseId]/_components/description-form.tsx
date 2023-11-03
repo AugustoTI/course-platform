@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import axios from 'axios'
 
 import { Button } from '@/components/ui/button'
-import { Form, FormItem, UncontrolledFormMessage } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { cn } from '@/lib/utils'
 import { Textarea } from '@/components/ui/textarea'
 
@@ -36,8 +36,8 @@ export function DescriptionForm({ courseId, initialData }: DescriptionFormProps)
     },
   })
 
-  const { isSubmitting, isValid, errors } = form.formState
-  const { register, handleSubmit } = form
+  const { isSubmitting, isValid } = form.formState
+  const { handleSubmit } = form
 
   const onSubmit: SubmitHandler<FormSchemaFields> = async (fields) => {
     try {
@@ -75,14 +75,22 @@ export function DescriptionForm({ courseId, initialData }: DescriptionFormProps)
       {isEditing && (
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
-            <FormItem>
-              <Textarea
-                {...register('description')}
-                disabled={isSubmitting}
-                placeholder="e.g. 'This course is about...'"
-              />
-              <UncontrolledFormMessage message={errors.description?.message} />
-            </FormItem>
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea
+                      disabled={isSubmitting}
+                      placeholder="e.g. 'This course is about...'"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">
                 Save

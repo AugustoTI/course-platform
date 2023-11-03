@@ -11,7 +11,7 @@ import axios from 'axios'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Form, FormItem, UncontrolledFormMessage } from '@/components/ui/form'
+import { Form, FormItem, FormField, FormControl, FormMessage } from '@/components/ui/form'
 
 interface ChapterTitleFormProps {
   initialData: string
@@ -40,8 +40,8 @@ export function ChapterTitleForm({
     },
   })
 
-  const { isSubmitting, isValid, errors } = form.formState
-  const { register, handleSubmit } = form
+  const { isSubmitting, isValid } = form.formState
+  const { handleSubmit } = form
 
   const onSubmit: SubmitHandler<FormSchemaFields> = async (fields) => {
     try {
@@ -75,14 +75,22 @@ export function ChapterTitleForm({
       {isEditing && (
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
-            <FormItem>
-              <Input
-                {...register('title')}
-                disabled={isSubmitting}
-                placeholder="e.g. 'Introduction to the course'"
-              />
-              <UncontrolledFormMessage message={errors.title?.message} />
-            </FormItem>
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      disabled={isSubmitting}
+                      placeholder="e.g. 'Introduction to the course'"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <div className="flex items-center gap-x-2">
               <Button disabled={!isValid || isSubmitting} type="submit">
                 Save
