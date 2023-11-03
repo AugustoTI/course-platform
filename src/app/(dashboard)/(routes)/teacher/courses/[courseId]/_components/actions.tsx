@@ -65,7 +65,7 @@ export function Actions({ disabled, isPublished, courseId }: ActionsProps) {
         {isPublished ? 'Unpublish' : 'Publish'}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button size="sm" disabled={disabled}>
+        <Button size="sm" disabled={isLoading}>
           <Trash />
         </Button>
       </ConfirmModal>
